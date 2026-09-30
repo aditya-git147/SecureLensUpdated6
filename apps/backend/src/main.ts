@@ -12,7 +12,7 @@ async function bootstrap() {
     try {
       const prisma = app.get(PrismaService);
       logger.log('Running database migrations...');
-      await prisma.$executeRawUnsafe('SELECT 1'); // Test connection
+      await prisma.$queryRaw`SELECT 1`; // Test connection
       logger.log('Database connection verified ✓');
     } catch (error) {
       logger.warn('Database migration check failed (may retry on next restart):', error.message);
