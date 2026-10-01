@@ -39,7 +39,7 @@ export interface ChatRequestOptions {
 
 /**
  * AI Security Copilot Service
- * 
+ *
  * Features:
  * 1. Multi-key registry: Saves individual API keys & models for EACH provider.
  * 2. Automatic Failover: When one provider reaches rate limits (429 / Quota / 503),
@@ -505,11 +505,9 @@ Format your answer with:
     });
 
     const modelsToTry = [
-      model,
       'llama-3.3-70b-versatile',
       'llama-3.1-8b-instant',
       'qwen/qwen3.6-27b',
-      'groq/compound',
     ].filter(Boolean);
     const uniqueModels = Array.from(new Set(modelsToTry));
 
