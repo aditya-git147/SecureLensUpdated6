@@ -210,7 +210,7 @@ function AICopilotContent() {
     const safeDbScans = Array.isArray(dbScans) ? dbScans.slice(0, 5) : [];
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/ai-copilot/chat`, {
+      const response = await fetch('https://web-production-e3c1e.up.railway.app/api/ai-copilot/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
