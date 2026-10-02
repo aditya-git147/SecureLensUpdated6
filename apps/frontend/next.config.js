@@ -1,24 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
   /**
    * API Rewrites - Proxy all /api/* requests to the NestJS backend
-   *
-   * LOCAL:
-   *   - Frontend: http://localhost:3000
-   *   - Backend: http://localhost:4000
-   *   - Proxy: /api/* → http://localhost:4000/api/*
-   *
-   * PRODUCTION (Railway):
-   *   - Frontend: https://<your-railway-frontend-url>
-   *   - Backend: https://<your-railway-backend-url>
-   *   - Uses internal domain: http://scintillating-strength.railway.internal:8080
-   *
-   * Set NEXT_PUBLIC_BACKEND_URL in .env to control backend URL
    */
   async rewrites() {
     let backendUrl =
-      process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:4000';
+      process.env.NEXT_PUBLIC_BACKEND_URL ||
+      (process.env.NODE_ENV === 'production'
+        ? 'https://web-production-e3c1e.up.railway.app'
+        : 'http://localhost:4000');
 
     // Ensure backendUrl starts with http://, https://, or /
     if (

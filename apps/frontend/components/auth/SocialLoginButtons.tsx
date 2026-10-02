@@ -168,7 +168,7 @@ export default function SocialLoginButtons({ mode = "login", onGitHub, onGoogle 
   };
 
   const handleLiveRedirect = (provider: "google" | "github") => {
-    const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || "https://securelens-backend-o213.onrender.com";
+    const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || "https://web-production-e3c1e.up.railway.app";
     window.location.href = `${backendUrl}/api/auth/${provider}`;
   };
 

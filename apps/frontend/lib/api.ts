@@ -13,13 +13,13 @@ import axios, { AxiosError, InternalAxiosRequestConfig } from 'axios';
 
 // Always use Next.js rewrite proxy for API calls
 // This ensures all requests go through the configured rewrites in next.config.js
-const BASE_URL = process.env.NEXT_PUBLIC_API_URL;
-
-if (!BASE_URL) {
-  throw new Error(
-    'NEXT_PUBLIC_API_URL is not configured. Set it to the SecureLens backend API URL.'
-  );
-}
+const BASE_URL =
+  process.env.NEXT_PUBLIC_API_URL ||
+  (process.env.NEXT_PUBLIC_BACKEND_URL
+    ? `${process.env.NEXT_PUBLIC_BACKEND_URL.replace(/\/+$/, '')}/api`
+    : process.env.NODE_ENV === 'production'
+    ? 'https://web-production-e3c1e.up.railway.app/api'
+    : '/api');
 
 console.log('[API Client] Configured with BASE_URL:', BASE_URL);
 console.log('[API Client] NODE_ENV:', process.env.NODE_ENV);

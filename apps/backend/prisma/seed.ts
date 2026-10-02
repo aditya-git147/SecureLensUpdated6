@@ -21,11 +21,13 @@ async function main() {
   try {
     // Check if demo user already exists
     const existing = await prisma.user.findFirst({
-      where: { email: 'test@gmail.com' },
+      where: {
+        OR: [{ id: 'test-user-1' }, { email: 'test@gmail.com' }, { email: 'test@securelens.com' }],
+      },
     });
 
     if (existing) {
-      console.log('✅ Demo user already exists with email: test@gmail.com');
+      console.log(`✅ Demo user already exists with email: ${existing.email} (id: ${existing.id})`);
       return;
     }
 
