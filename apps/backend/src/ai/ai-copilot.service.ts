@@ -55,7 +55,7 @@ export class AICopilotService {
 
   private providerRegistry: Record<AIProvider, ProviderConfig> = {
     gemini: { apiKey: '', model: 'gemini-3.5-flash-lite', enabled: true },
-    groq: { apiKey: '', model: 'llama-3.3-70b-versatile', enabled: true },
+    groq: { apiKey: '', model: 'qwen/qwen3.8-27b', enabled: true },
     openrouter: { apiKey: '', model: 'nvidia/nemotron-3.5-lightning:free', enabled: true },
     openai: { apiKey: '', model: 'gpt-4o-mini', enabled: true },
     claude: { apiKey: '', model: 'claude-3-5-sonnet-20241022', enabled: true },
@@ -505,9 +505,12 @@ Format your answer with:
     });
 
     const modelsToTry = [
+      model,
+      'qwen/qwen3.8-27b',
+      'openai/gpt-oss-120b',
+      'openai/gpt-oss-20b',
       'llama-3.3-70b-versatile',
       'llama-3.1-8b-instant',
-      'qwen/qwen3.6-27b',
     ].filter(Boolean);
     const uniqueModels = Array.from(new Set(modelsToTry));
 
